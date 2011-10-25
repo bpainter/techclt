@@ -1,0 +1,60 @@
+<% title "User Management Dashboard" %>
+
+<div id="user_management">
+  
+  <%= link_to 'New User', new_user_path, :class => "green_button" %>
+  <br/>
+  <br/>
+  
+  <%# if can? :manage, User %>
+    <h2>Visible Users</h2>
+  <table>  
+  	<tr>
+  		<th>Name</th>
+  		<th>Email</th>
+  		<th>Invites</th>
+  		<th>Invited By</th>
+  		<th></th>
+  		<th></th>
+     </tr>
+    <% for user in @visible_users %>
+      <tr class="<%= cycle :odd, :even %>">
+      	<td><%= user.full_name %></td> 
+  	    <td><%= user.email %></td>
+  	    <td><%= user.invitation_limit %></td>
+  	    <td><%= was_invited_by(user.invited_by_id) %></td>
+  	    <td><%= link_to "Edit User", edit_user_path(user) %></td>
+  	    <td><%= link_to 'Delete User', user, :confirm => "Are you REALLY sure?", :method => :delete %></td>
+  	</tr>
+    <% end %>
+  </table>
+
+  <br />
+  
+  <%# if can? :manage, User %>
+    <h2>Hidden Users</h2>
+  <table>  
+  	<tr>
+  		<th>Name</th>
+  		<th>Email</th>
+  		<th>Invited By</th>
+  		<th></th>
+  		<th></th>
+     </tr>
+    <% for user in @hidden_users %>
+      <tr class="<%= cycle :odd, :even %>">
+      	<td><%= user.full_name %></td> 
+  	    <td><%= user.email %></td>
+  	    <td><%= was_invited_by(user.invited_by_id) %></td>
+  	    <td><%= link_to "Edit User", edit_user_path(user) %></td>
+  	    <td><%= link_to 'Delete User', user, :confirm => "Are you REALLY sure?", :method => :delete %></td>
+  	</tr>
+    <% end %>
+  </table>
+
+    <%= link_to 'New User', new_user_path, :class => "green_button" %>
+  <br />
+  <br />
+
+  <%# end %>
+</div>

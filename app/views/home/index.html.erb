@@ -1,0 +1,19 @@
+<%= title "Home" %>
+
+<div id="temporary-content-div">
+  <% @users.each do |user| %>
+  
+    <div class="profile_short">
+      <h3><%#= link_to user.full_name, user %>
+        <%= link_to user.full_name, :controller=>'user',:action=>'show',:id => @user %>
+      </h3>
+      <%= link_to image_tag(user.photo.url(:medium), :class => "small_profile"), user %>
+      <p><%= user.bio %></p>
+    </div>
+  
+  <% end %>
+</div>
+
+<div class="pagination">
+  <%= will_paginate @users %>
+</div>

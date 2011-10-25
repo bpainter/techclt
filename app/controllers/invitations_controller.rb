@@ -1,0 +1,95 @@
+class InvitationsController < Devise::InvitationsController
+  
+  include Devise::Controllers::InternalHelpers
+
+    before_filter :authenticate_inviter!, :only => [:new, :create]
+    #before_filter :has_invitations_left?, :only => [:create]
+    # before_filter :require_no_authentication, :only => [:edit, :update]
+    # helper_method :after_sign_in_path_for
+
+    # GET /resource/invitation/new
+    def new
+      #puts "INVITATIONS NEW"
+      
+      #resource.role = params[resource_name][:role] if resource.errors.empty?
+      super
+      #flash[:notice] = "Successful! Want to invite someone else?"
+      #params[:user][:role] = "user"
+      
+      #build_resource
+      #render_with_scope :new
+    end
+
+    # POST /resource/invitation
+    def create
+      puts "INVITATIONS CREATE"
+      puts resource_class
+      
+      params[resource_name][:role] = "notadmin" #This is what sets the role
+      #current_user.decrement!(:invitation_limit)
+      
+      super #this needs to be last to correctly set the user role.
+      
+       #puts resource_class.invitation_limit.present?
+      
+      # self.resource = resource_class.invite!(params[resource_name]) #, current_inviter)
+      # 
+      # if resource.errors.empty?
+      #   if resource_class.invitation_limit.present? && current_inviter
+      #     puts "Invitations Left ="
+      #     puts resource_class.invitation_limit
+      #     current_inviter.invitation_limit ||= resource_class.invitation_limit
+      #     current_inviter.decrement!(:invitation_limit)
+      #   end
+      #   set_flash_message :notice, :send_instructions, :email => self.resource.email
+      #   redirect_to after_sign_in_path_for(resource_name)
+      # else
+      #   render_with_scope :new
+      # end
+    end
+
+    # GET /resource/invitation/accept?invitation_token=abcdef
+    def edit
+      #puts "INVITATIONS EDIT"
+      super
+      resource.role = "notadmin" if resource.errors.empty?
+      
+      # if params[:invitation_token] && self.resource = resource_class.first(:conditions => { :invitation_token => params[:invitation_token] })
+      #   resource.role = "notadmin" if resource.errors.empty?
+      #   render_with_scope :edit
+      # else
+      #   set_flash_message(:alert, :invitation_token_invalid)
+      #   redirect_to after_sign_out_path_for(resource_name)
+      # end
+    end
+
+    # PUT /resource/invitation
+    def update
+      #puts "INVITATIONS UPDATE"
+      super
+        resource.role = params[resource_name][:role] if resource.errors.empty?
+      puts "Done UPDATE"
+      # self.resource = resource_class.accept_invitation!(params[resource_name])
+      # 
+      # if resource.errors.empty?
+      #   set_flash_message :notice, :updated
+      #   sign_in_and_redirect(resource_name, resource)
+      # else
+      #   render_with_scope :edit
+      # end
+    end
+    
+    protected
+     def current_inviter
+       @current_inviter ||= authenticate_inviter!
+     end
+
+     def has_invitations_left?
+       unless current_inviter.nil? || current_inviter.has_invitations_left?
+         build_resource
+         set_flash_message :alert, :no_invitations_remaining 
+         render_with_scope :new
+       end
+     end
+  
+end

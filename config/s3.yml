@@ -1,0 +1,14 @@
+development:
+  bucket: techcltdevelopment
+  access_key_id: AKIAIPYCGTURE2RCX5JA
+  secret_access_key: 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
+
+test:
+  bucket: techclttest
+  access_key_id: AKIAIPYCGTURE2RCX5JA
+  secret_access_key: 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
+
+production:
+  bucket: techclt
+  access_key_id: AKIAIPYCGTURE2RCX5JA
+  secret_access_key: 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

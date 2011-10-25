@@ -1,0 +1,16 @@
+<% title "New User" %>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+
+<div id="admin">
+<h1>New User</h1>
+
+<%= form_for @user, :url => user_index_path, :html => { :multipart => true } do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+
+</div>
+
+

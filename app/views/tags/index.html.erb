@@ -1,0 +1,21 @@
+<h1>Available Tags</h1>
+
+<table>
+
+<% @tags.each do |tag| %>
+  <tr>
+    <td><%= tag.name %></td>
+    <% if can? :manage, Tag %>
+    <td><%= link_to 'Show', tag %></td>
+    <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+    <td><%= link_to 'Destroy', tag, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if can? :manage, Tag %>
+<%= link_to 'New Tag', new_tag_path, :class => "button" %>
+<% end %>

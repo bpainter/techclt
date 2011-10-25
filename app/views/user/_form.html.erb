@@ -1,0 +1,98 @@
+<div class="span-24 last">
+<p><%= link_to "Invite someone to techCLT", new_user_invitation_path %> (<%= @user.invitation_limit %> invites)</p>
+<br/>
+</div>
+
+<div id="profile_fields">  
+  <p><%= f.label :first_name, :class => "profile_label" %>
+  <%= f.text_field :first_name %></p>
+
+  <p><%= f.label :last_name, :class => "profile_label" %>
+  <%= f.text_field :last_name %></p>
+  
+  <% if can? :manage, :all %>
+  <p><%= f.label :invitation_limit, :class => "profile_label" %>
+  <%= f.text_field :invitation_limit %></p>
+  <% end %>
+
+  <p><%= f.label :title, :class => "profile_label"  %>
+  <%= f.text_field :title %></p>
+
+  <p>Tags are displayed beneath your profile photo. <%= link_to "Available Tags", tags_path, :target => '_blank' %>.</p>
+  <div id="tags_input">
+  <p><%= f.label :tag_tokens, "Tags", :class => "profile_label"  %></p>
+  <div id="tokens"><%= f.text_field :tag_tokens, "data-pre" => @user.tags.map(&:attributes).to_json %></div>
+  </div>
+
+  <p><%= f.label :twitter, "Twitter Handle", :class => "profile_label"  %>
+  <%= f.text_field :twitter %></p>
+
+  <p><%= f.label :website, "Website (http://)", :class => "profile_label"  %>
+  <%= f.text_field :website %></p>
+  
+  <p><%= f.label :company, :class => "profile_label"  %>
+  <%= f.text_field :company %></p>
+  
+  <p><%= f.label :company_website, "Company site (http://)", :class => "profile_label"  %>
+  <%= f.text_field :company_website %></p>
+
+  <p><%= f.label :email, "Email", :class => "profile_label"  %>
+  <%= f.text_field :email %></p>
+  
+
+  <p id="check_box"><%= f.check_box :show_email %><%= f.label :show_email, "Show Email in Profile?", :class => "check_box_label"  %></p>
+
+  <p><%= link_to("Change Password", "#", :id => "change_password_link") %></p>
+  
+  <div id="change_password" class="hidden">
+    <p><%= f.label :password, :class => "profile_label"  %>
+    <%= f.password_field :password %></p>
+
+    <p><%= f.label :password_confirmation, "Confirmation", :class => "profile_label"  %>
+    <%= f.password_field :password_confirmation %></p>
+  </div>
+
+  <% if can? :manage, @users %>
+  <p><%= f.label :role, :class => "profile_label" %>
+     <%= f.collection_select :role, User::SUPERROLES, :to_s, :humanize, {:include_blank => true} %></p>
+  <p><%= f.label :visible, :class => "profile_label" %>
+     <%= f.check_box :visible %></p>
+  <% end %>
+
+  <p><%= f.submit "Save" , :class => "green_button", :id => "profile_button" %></p>
+
+</div>
+
+<div id="bio_and_interview">
+
+  <!-- github, dribble, forrst, linkedin, stackoverflow,  -->
+
+
+  <!-- <p><%= f.label :github, :class => "profile_label"  %>
+  <%= f.text_field :github %></p>
+  
+  <p><%= f.label :dribble, :class => "profile_label"  %>
+  <%= f.text_field :dribble %></p>
+  
+  <p><%= f.label :forrst, :class => "profile_label"  %>
+  <%= f.text_field :forrst %></p>
+  
+  <p><%= f.label :linkedin, "Linked In", :class => "profile_label"  %>
+  <%= f.text_field :linkedin %></p>
+  
+  <p><%= f.label :stackoverflow, :class => "profile_label"  %>
+  <%= f.text_field :stackoverflow %></p> -->
+
+  <p><%= f.label :bio, :class => "profile_label"  %>
+  <%= f.text_area :bio, :id => "bio", :rows => "12", :cols => "40" %></p>
+
+  <div id="profile_avatar">
+    <%= image_tag(@user.image_url(:medium).to_s, :class => "drop_shadow")%>
+    <p>(Landscape, Image Width > 600px for best results)</p>
+  </div>
+  
+  <p><%= f.label :image, "Profile Image", :class => "profile_label" %>
+  <%= f.file_field :image %></p>
+  
+
+</div> <!-- #bio_and_interview -->

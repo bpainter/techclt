@@ -1,0 +1,138 @@
+html { height: 100%; }
+body { background: #CCCCCC; /* #cccccc url('/images/bg_grey.png') left top repeat; */ font: 14px helvetica, arial, sans-serif; margin: 0px; padding: 0px; }
+
+a img { border: none; }
+a { color: #0000FF; }
+h1, h2, h3, h4 { padding: 0px; margin: 0px; }
+blockquote { font: 12px/1.0em 'AW Conqueror Sans', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; 
+             margin: .75em 30px;}
+
+#container { position: relative; height: 100%;
+             padding: 0; margin: 0;}
+
+
+/* Header */
+#header { background-color: #3B7514; 
+		      margin-bottom: 0px; 
+		      -moz-box-shadow: 0px 2px 4px #888888; /* FireFox */
+		      -webkit-box-shadow: 0px 2px 4px #888888; /*Safari and Chrome */ 
+		      -box-shadow: 0px 2px 4px #888888; /* IE */}
+#header-content { min-height: 80px; width: 880px; margin: 0px auto;
+                  padding: 0px; }
+
+/* Logo */
+#logo { display: block; float: left; font-size: 3.0em; line-height: 80px; color: #254A0D; text-shadow: #3F7D15 1px 1px 0px; /* 2px 2px 0px */ font-family: 'Allerta Stencil', arial, serif;
+	      /* padding-top: 12px;*/ }
+#logo a { color: #254A0D; text-decoration: none; }
+
+/* Right side of Header */
+#user_nav_and_navbar { display: block; float: right; }
+#user_nav { display: block; float: right;font-size: 12px; font-weight: normal; color: #CCCCCC;
+            padding-right: 10px; padding-top: 6px; }
+#user_nav a { color: #EEEEEE; text-decoration: none; }
+
+/* Navigation Bar */
+#navbar { clear: both; display: block; float: right; font-family: 'Arimo', arial, serif;
+	      padding: 16px 0 0 0; margin: 0px; }
+#navbar ul { float: right; list-style: none; font-weight: bold;
+             padding: 0; margin: 0px;}
+#navbar ul li {  list-style: none; display: inline;
+                 padding-top: 0px; padding-right: 3px; padding-bottom: 0px; padding-left: 0px; }
+#navbar ul li a { text-transform: uppercase; color: #eee; font-size: .95em; font-weight: bold; text-decoration: none; text-shadow: 0px -1px 1px #757575; filter: dropshadow(color=#eeeeee, offx=0, offy=1);
+	              padding-top: 3px; padding-right: 10px; padding-bottom: 3px; padding-left: 10px; }
+#navbar ul li a:hover { background-color: #254A0D; /* #2C862F; /* #555555; */ color: #fff;
+	                    -moz-border-radius:10px;
+                      -webkit-border-radius:10px; }
+                        
+/* CONTENT */
+#content { width: 890px; overflow-x: hidden;
+           margin: 0px auto; padding: 20px; padding-top: 0px;}
+
+.profile_listing { float: left; height: 280px; position: relative; width: 290px; /* Width sets the width of the box and photo and scales the image */
+                   margin-right: 10px; padding: 0px; /*10px 0px 15px;*/ }
+.profile_listing h3 { font-size: 18px; line-height: 19px;
+                      padding-bottom: 10px; }
+.profile_listing h3 a { text-decoration: none; color: #336699;}
+
+.medium_profile_photo { display: block; height: 180px; overflow: hidden;
+                       margin-bottom: 8px; }
+
+#large_profile { float: left;
+                  margin: 10px; padding: 0px; /*10px 0px 15px;*/ }               
+#large_profile a { text-decoration: none; color: #336699; }
+
+.pagination { clear: both; text-align: center; width: 100%;
+              padding-top: 0px;}
+#listings { width: 900px; float: left; } /* This is 900 and not 890 because it can handle the overflow*/
+
+/* EDIT USER PROFILE */
+#profile_fields { display: block; float: left; width: 40%;}
+#bio_and_interview { display: block; float: right; width: 60%;}
+
+/* LABELS and FORM FIELDS */
+label.profile_label {
+  width: 150px;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block
+}
+
+#bio_and_interview label.profile_label {
+  width: 70px;
+}
+
+textarea#bio { /*width: 220px; height: 70px; */}
+textarea#interview { }
+
+/* BUTTONS */
+
+.button {
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  text-decoration: none;
+  border:1px solid #ADADAD;
+  /* background-color:#DFDFDF; */
+  text-align: center;
+  font-weight:bold;
+  font-size: 1em;
+  padding:4px 15px; 
+  color: #333;
+  cursor: pointer;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#BFBFBF), to(#A1A1A1), color-stop(.4,#B0B0B0));
+}
+ 
+.button:hover { 
+	/* background-color:#D3D3D3; */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DDDDDD), to(#BFBFBF), color-stop(.4,#CCCCCC));
+}
+
+.green_button {
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  text-decoration: none;
+  border:1px solid #3B7514;
+  text-align: center;
+  font-weight:bold;
+  font-size: 1em;
+  padding:4px 15px; 
+  color: #333;
+  cursor: pointer;
+/* Good colors for the drop text effect
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3B7514), to(#3F7D15), color-stop(.4,#254A0D)); */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#488F18), to(#397013), color-stop(.4,#3F7D15));
+}
+
+.green_button:hover { 
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#62C221), to(#488F18), color-stop(.4,#509E1B));
+}
+
+#profile_button {
+  margin-left: 160px; /* Accounts for 160px width of Labels */
+}
+
+
+/* ERROR HANDLING */
+.field_with_errors { background: #C40424; }
+
+#four_oh_four { text-align: center; margin: 0 auto; height: 300px; line-height: 300px;}

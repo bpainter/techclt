@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) || "Untitled" %></title>
+  
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'gertig', 'token-input-facebook' %>
+  <!--[if gte IE 7]><%= stylesheet_link_tag 'style-ie' %><![endif]-->
+    
+  <%#= javascript_include_tag 'jquery.min' %>
+    <!-- <script src="http://code.jquery.com/jquery-1.5.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <%= javascript_include_tag 'rails' %>
+  <%= javascript_include_tag 'jquery.tokeninput' %>
+  
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css">
+  <!-- <script src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script> -->
+  <%#= yield(:head) %>
+  <%= javascript_include_tag 'application' %>
+  
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22555226-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+  
+  <script type="text/javascript" src="http://use.typekit.com/mto8xkr.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  
+
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <%# FLASH NOTIFICATIONS %>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}", :class => "flashy" %>
+  <% end %>
+  <div id="container"> 
+     
+  <div id="header">
+    <div id="header-content">
+  		<div id="logo">
+
+  			<%= link_to image_tag("/images/techclt-logo.png", :alt => "techCLT Logo"), root_url %>
+
+  		</div>
+		
+  		<div id="user_nav_and_navbar" class="clearfix">
+        <!-- <div id="user_nav">
+                <%# if user_signed_in? %>
+                  <%#= link_to current_user.full_name, {:controller => 'user', :action => 'edit', :id => current_user } %> |
+                  <%#= link_to "Invitations: #{current_user.invitation_limit}", new_user_invitation_path %> | 
+                  <%#= link_to "Logout", destroy_user_session_path %>
+                <%# else %>
+                  <%#= link_to "Login", new_user_session_path %>
+                <%# end %>
+        </div> -->
+		
+  			<div id='navbar'>		
+  				<ul>
+  				  <li><%= link_to "About", {:controller => 'about', :action => 'index'} %></li>
+  				  	<% if can? :manage, :all %>
+    					  <li><%= link_to 'Users', {:controller => 'user_management', :action => 'index'} %></li>
+    					  <li><%= link_to 'Tags', {:controller => 'tags', :action => 'index'}, :target => '_blank' %></li>
+    					<% end %>
+  				  <% if user_signed_in? %>
+		          <li><%= link_to "Profile", {:controller => 'user', :action => 'edit', :id => current_user } %></li>
+		          <li><%= link_to "Invites", new_user_invitation_path %></li> <%# : #{current_user.invitation_limit} %>
+		          <li><%= link_to "Logout", destroy_user_session_path %></li>
+		        <% else %>
+		          <li><%= link_to "Login", new_user_session_path %></li>
+		        <% end %>
+  				</ul>		
+  			</div> <!-- End 'navbar' -->
+  			
+  		</div> <!-- End 'user_nav_and_navbar' -->
+  	</div> <!-- End 'header-content' -->
+	</div> <!-- End 'header' -->
+  
+	
+  <div id="content">
+    
+    <%= yield %>
+  </div> <!-- End 'content' -->
+  
+  </div> <!-- End 'container' -->
+</body>
+</html>

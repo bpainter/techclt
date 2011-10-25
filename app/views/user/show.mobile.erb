@@ -1,0 +1,55 @@
+<div data-role="header">
+  <h1><%= @user.full_name %></h1>
+</div>
+
+<div data-role="content">
+  
+  <% if @user.image? %>
+    <!--<p><%#= image_tag @user.photo.url(:large), :class => "profile_photo" %></p>-->
+    <p><%= image_tag @user.image_url(:large).to_s, :class => "profile_photo"  %></p>
+  <% else %>
+    <p><%= image_tag("noimage.png", :class => "profile_photo")  %></p>
+  <% end %>
+ 
+    <div class="profile_information">
+      
+      <% if @user.bio? %>
+        <p><b>Bio:</b> <%= @user.bio %></p>
+      <% end %>
+  
+      <% if @user.title? %>
+        <p><b>Title:</b> <%= @user.title %></p>
+      <% end %>
+  
+      <% if @user.show_email? %>
+        <p><b>Email:</b> <%= @user.email %></p>
+      <% end %>
+  
+      <% if @user.twitter? %>
+        <p><b>Twitter:</b> <a href="http://twitter.com/<%= @user.twitter %>" target="_blank"><%= @user.twitter %></a></p>
+      <% end %>
+
+      <% if @user.website? %>
+        <p><b>Website:</b> <a href="http://<%= @user.website %>" target="_blank"><%= @user.website %></a></p>
+      <% end %>
+      
+      <% if @user.company? %>
+        <p><b>Company:</b> <a href="http://<%= @user.company_website %>" target="_blank"><%= @user.company %></a></p>
+      <% end %>
+      
+      <p>
+        <b>Tags:</b>
+        <% count = @user.tags.count %>
+        <% @user.tags.each do |tag| %>
+          <% if  count != 1 %>
+            <%= tag.name + ',' %>
+          <% else %>
+            <%= tag.name %>
+          <% end %>
+          <% count = count - 1 %>
+        <% end %>
+      </p>
+  
+    </div>
+  
+</div>

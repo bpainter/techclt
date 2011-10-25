@@ -1,0 +1,34 @@
+<%= title "techCLT" %>
+
+<div data-role="header">
+  <h1>techCLT</h1>
+</div>
+ 
+ 
+<div id="techclt_list" data-role="content">
+  
+  <h4>We are the developers, designers, founders, investors, and people hustling in the Charlotte, NC startup community.</h4>
+  <br/>
+  
+  <ul data-role="listview">
+  <% @users.each do |user| %>
+    <li data-icon="false">
+      <%= link_to("#{user.to_param}", :class => "ui-link-inherit") do %>
+        <%= image_tag(user.image_url(:small).to_s, :class => "ul-li-thumb") %>
+        <h3 class="ul-li-heading"><%= user.full_name %></h3>
+        <p class="ul-li-desc">
+          <% count = user.tags.count %>
+          <% user.tags.each do |tag| %>
+            <% if  count != 1 %>
+              <%= tag.name + ',' %>
+            <% else %>
+              <%= tag.name %>
+            <% end %>
+            <% count = count - 1 %>
+          <% end %>
+        </p>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,58 @@
+<%= title "techCLT" %>
+
+<%# if @users.current_page == 1 %>
+<div id="we_are">
+<h2>We are the developers, designers, founders, investors, and people hustling in the Charlotte, NC startup community.</h2>
+</div>
+<%# end %>
+
+<div id="listings">
+  <% @users.each do |user| %>
+  
+    
+      <div class="profile_listing">
+        
+        <%= link_to("#{user.to_param}") do %>
+        
+        <h3><%#= link_to user.full_name, user %>
+          <%#= link_to user.full_name, "#{user.to_param}" %> <!-- :controller=>'user',:action=>'show',:id => @user %> -->
+          <%= user.full_name%>
+        </h3>
+        
+        <%# puts user.image_url(:medium) %>
+        
+        <%# if user.image? %>
+          <%#= link_to image_tag(user.image_url(:medium).to_s, :class => "drop_shadow"), "#{user.to_param}", :class => "medium_profile_photo" %>
+          <%= image_tag(user.image_url(:medium).to_s, :class => "drop_shadow medium_profile_photo") %>
+        <%# else %>
+          <%#= link_to image_tag("noimage.png", :class => "drop_shadow"), "#{user.to_param}", :class => "medium_profile_photo" %>
+        <%# end %>
+        
+        <!-- <%# if user.photo? %>
+          <%#= link_to image_tag(user.photo.url(:medium), :class => "drop_shadow"), "#{user.to_param}", :class => "medium_profile_photo" %>
+        <%# else %>
+          <%#= link_to image_tag("/images/No-Image.png"), "#{user.to_param}", :class => "medium_profile_photo" %>
+        <%# end %> -->
+        <%# if user.bio? %>
+                <% end %> <%# end of link_to do block %>
+          <blockquote>
+            <% count = user.tags.count %>
+            <% user.tags.each do |tag| %>
+              <% if  count != 1 %>
+                <%= tag.name + ',' %>
+              <% else %>
+                <%= tag.name %>
+              <% end %>
+              <% count = count - 1 %>
+            <% end %>
+          </blockquote>
+
+      </div>
+  
+  
+  <% end %>
+</div>
+
+
+  <%= will_paginate @users %>
+  <%#= page_entries_info @users %> 

@@ -1,0 +1,10 @@
+<% title "Edit Profile" %>
+
+
+<div id="admin">
+<h1>Edit Profile</h1>
+
+<%= form_for @user, :url => user_path, :html => { :multipart => true } do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
+</div>

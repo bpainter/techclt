@@ -1,0 +1,16 @@
+<div id="send_invitation" class="action_box">
+  <h2>Invites Remaining: <%= current_user.invitation_limit %></h2>
+
+  <!-- <p>Invitations are temporarily disabled while we work on an image uploading issue. Thanks!</p> -->
+
+  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
+    <%= devise_error_messages! %>
+
+    <p><%= f.label :email %> <%= f.text_field :email %></p>
+
+    <p><%= f.submit "Send", :class => "green_button" %></p>
+  <% end %>
+
+
+  <%#= link_to "Home", after_sign_in_path_for(resource_name) %><br />
+</div>
